@@ -27,6 +27,11 @@ map = "test_map"
 
 current_collision_map = game_map.get_map(map)[1] # Liste contenant la map de collision
 
+game_mode = 1 # exploration, pour dev
+fight_enemy_id = str
+
+# 0 = menu , 1 = exploration / normal , 1 = combat
+
 # [Temp] Tests
 
 # print(game_map.get_map(map)[2])
@@ -35,7 +40,6 @@ print(game_enemies.get_enemy(game_map.read_collision_map(current_collision_map)[
 
 print(game_map.read_collision_map(current_collision_map)[0][2][4])
 
-compteur_test = 0
 
 # Fonctionnement du jeu
 
@@ -47,47 +51,54 @@ def update():
 # draw() : Affichage à l'écran, fonction utilisée pour afficher des objets sur l'écran
 
 def draw():
-    global compteur_test
+    global game_mode, fight_enemy_id
 
-    pyxel.cls(0)
-    game_character.afficher_personnage(current_collision_map)
+    if game_mode == 1: # Si on est en mode exploration
+        pyxel.cls(0)
+        game_character.afficher_personnage(current_collision_map)
 
-    read_game_map = game_map.read_collision_map(current_collision_map)
+        read_game_map = game_map.read_collision_map(current_collision_map)
 
-    # Enemies management
-    # A map cannot contain more than 3 enemies at once, call it a technical limitation lol (just easier for me, maybe adding more enemies at once later if i'm not lazy af)
+        # Enemies management
+        # A map cannot contain more than 3 enemies at once, call it a technical limitation lol (just easier for me, maybe adding more enemies at once later if i'm not lazy af)
 
-    if not read_game_map[0][0] == []: # Si un premier ennemi a été trouvé (si la liste d'info du premier enemi n'est pas vide)
+        if not read_game_map[0][0] == []: # Si un premier ennemi a été trouvé (si la liste d'info du premier enemi n'est pas vide)
 
-        # Récupération des infos du premier ennemi
+            # Récupération des infos du premier ennemi
 
-        enemy_1_id = read_game_map[0][0][0]
-        enemy_1_x = read_game_map[0][0][2]
-        enemy_1_y = read_game_map[0][0][3]
+            enemy_1_id = read_game_map[0][0][0]
+            enemy_1_x = read_game_map[0][0][2]
+            enemy_1_y = read_game_map[0][0][3]
 
-        game_enemies.draw_enemy(enemy_1_id, enemy_1_x, enemy_1_y) # Afficher l'ennemi d'ID et aux coordonées précedemment récupérés
-       # print("Enemy 1 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][0][4], current_collision_map))
-    
+            game_enemies.draw_enemy(enemy_1_id, enemy_1_x, enemy_1_y) # Afficher l'ennemi d'ID et aux coordonées précedemment récupérés
+        # print("Enemy 1 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][0][4], current_collision_map))
+            if game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][0][4], current_collision_map): # si le joueur est dans le champ de vision du joueur
+                game_mode = 2
+                fight_enemy_id = enemy_1_id       
 
-        if not read_game_map[0][1] == []: # Même logique que pour les tests précédents, mais avec les ennemis 2 puis 3
+            if not read_game_map[0][1] == []: # Même logique que pour les tests précédents, mais avec les ennemis 2 puis 3
 
-            enemy_2_id = read_game_map[0][1][0]
-            enemy_2_x = read_game_map[0][1][2]
-            enemy_2_y = read_game_map[0][1][3]
+                enemy_2_id = read_game_map[0][1][0]
+                enemy_2_x = read_game_map[0][1][2]
+                enemy_2_y = read_game_map[0][1][3]
 
-            game_enemies.draw_enemy(enemy_2_id, enemy_2_x, enemy_2_y)
-        #    print("Enemy 2 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][1][4], current_collision_map))
+                game_enemies.draw_enemy(enemy_2_id, enemy_2_x, enemy_2_y)
+            #    print("Enemy 2 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][1][4], current_collision_map))
 
-            if not read_game_map[0][2] == []:
-                
-                enemy_3_id = read_game_map[0][2][0]
-                enemy_3_x = read_game_map[0][2][2]
-                enemy_3_y = read_game_map[0][2][3]
+                if not read_game_map[0][2] == []:
+                    
+                    enemy_3_id = read_game_map[0][2][0]
+                    enemy_3_x = read_game_map[0][2][2]
+                    enemy_3_y = read_game_map[0][2][3]
 
-                game_enemies.draw_enemy(enemy_3_id, enemy_3_x, enemy_3_y)
-             #   print("Enemy 3 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][2][4], current_collision_map))
+                    game_enemies.draw_enemy(enemy_3_id, enemy_3_x, enemy_3_y)
+                #   print("Enemy 3 detects Player :", game_enemies.is_player_in_enemy_line(game_map.read_collision_map(current_collision_map)[0][2][4], current_collision_map))
 
-    for coords in read_game_map[2]:
-        game_utils.debug_draw_walls(coords[0], coords[1])
+        for coords in read_game_map[2]:
+            game_utils.debug_draw_walls(coords[0], coords[1])
+    elif game_mode == 2: # Si on est en mode combat, càd si un enemi a détecté le joueur
+        pyxel.cls(0)
+        print(fight_enemy_id)
+
 
 pyxel.run(update,draw)
