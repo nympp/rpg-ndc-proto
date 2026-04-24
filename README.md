@@ -11,6 +11,7 @@
 - [Explication des fichiers](#explication-des-fichiers)
     - [Fichiers](#fichiers)
     - [Dossiers](#dossiers)
+- [To-Do List](#to-do-list)
 
 ## Explication des fichiers
 
@@ -30,6 +31,13 @@ Les fichiers s'appelant `game_xxxxx.py` sont des fichiers qui contiennent des fo
 `/assets` contient les assets du prototype (info sur des enemis, collisions des maps...)
 
 `/saves` contient les sauvegardes (position/map du joueur, ou il en est dans le jeu...)
+
+## To-Do List
+
+- Ajouter le système de combat
+- Ajouter un inventaire sommaire
+- Ajouter menu
+    - Ajouter charge save
 
 ---
 

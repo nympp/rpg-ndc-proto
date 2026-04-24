@@ -17,4 +17,3 @@ def changer_map(map_name):
 
 def debug_draw_walls(wall_x: int, wall_y: int):
     pyxel.rect(wall_x * 16, wall_y * 16, 16, 16, 10)
-    print("apapapap")

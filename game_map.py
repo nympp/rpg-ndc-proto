@@ -57,6 +57,6 @@ def read_collision_map(current_collision_map): # current_collision_map est une l
                 walls_coord.append((x_axis, y_axis))
                 # print("trouve", x_axis, y_axis)
 
-    print(walls_coord)
+    # print(walls_coord)
 
     return [enemy_1, enemy_2, enemy_3], [], walls_coord # , [npc_1] etc. tuple contenant deux listes
