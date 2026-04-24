@@ -20,7 +20,7 @@
 
 Le module `pyxel` doit être installé : 
 ```bash
-python3 -m pip install pyxel
+python -m pip install pyxel
 ```
 
 Les fichiers s'appelant `game_xxxxx.py` sont des fichiers qui contiennent des fonctions utiles au jeu appelées dans `app.py`. 
