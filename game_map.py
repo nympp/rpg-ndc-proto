@@ -47,4 +47,16 @@ def read_collision_map(current_collision_map): # current_collision_map est une l
     # Détections des NPC
     # A faire
 
-    return [enemy_1, enemy_2, enemy_3], [] # , [npc_1] etc. tuple contenant deux listes
+    # Debug : détéction des murs
+
+    walls_coord = [] # liste de tuples
+
+    for y_axis in range(len(current_collision_map)):
+        for x_axis in range(len(current_collision_map[y_axis])):
+            if current_collision_map[y_axis][x_axis] == "X":
+                walls_coord.append((x_axis, y_axis))
+                # print("trouve", x_axis, y_axis)
+
+    print(walls_coord)
+
+    return [enemy_1, enemy_2, enemy_3], [], walls_coord # , [npc_1] etc. tuple contenant deux listes
