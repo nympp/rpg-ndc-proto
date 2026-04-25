@@ -12,6 +12,7 @@
     - [Fichiers](#fichiers)
     - [Dossiers](#dossiers)
 - [To-Do List](#to-do-list)
+- [Idées de Plot](#idées-de-plot)
 
 ## Explication des fichiers
 
@@ -38,6 +39,10 @@ Les fichiers s'appelant `game_xxxxx.py` sont des fichiers qui contiennent des fo
 - Ajouter un inventaire sommaire
 - Ajouter menu
     - Ajouter charge save
+
+## Idées de plot
+
+- 
 
 ---
 
