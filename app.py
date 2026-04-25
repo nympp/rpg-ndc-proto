@@ -1,6 +1,7 @@
-###############################################
-# VARIABLES THAT CAN BE CHANGED BY THE PLAYER #
-###############################################
+######################################################
+# VARIABLES THAT CAN BE CHANGED BY THE PLAYER        #
+# VARIABLES QUI PEUVENT ETRES CHANGEES PAR LE JOUEUR #
+######################################################
 GAME_FPS = 120 # Change this number to change the base framerate of the Game
 # Should work, though I did not try everywhere on the game so idk
 # Most animations uses the frame count as a way to reper the time, I tried to make the calculation "universal" but it might be a little bit broken in some aeras
